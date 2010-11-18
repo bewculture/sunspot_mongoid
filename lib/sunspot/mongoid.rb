@@ -37,6 +37,9 @@ module Sunspot
 
       def load_all(ids)
         puts "Sunspot::Mongoid::DataAccessor::Load_all #{ids.inspect}"
+        ids = ids.map do |id|
+          BSON::ObjectId.from_string(id) rescue id
+        end
         @clazz.where(:_id.in => ids)
       end
       
