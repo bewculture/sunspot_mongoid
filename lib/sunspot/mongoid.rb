@@ -40,7 +40,7 @@ module Sunspot
         ids = ids.map do |id|
           BSON::ObjectId.from_string(id) rescue id
         end
-        @clazz.where(:_id.in => ids)
+        @clazz.where(:_id.in => ids).to_ary
       end
       
     end
